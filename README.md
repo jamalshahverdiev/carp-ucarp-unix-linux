@@ -15,7 +15,7 @@ VIP: 172.16.100.100
 #####Only machines of one type of OS can be configured at a time.
 ![CARP topology](images/carptopology.jpg)
 
-#####__Note__: The python script uses fabric library which requires BASH to be installed on all FreeBSD machines. Please use the following commands:
+#####[u]Note[/u]: The python script uses fabric library which requires BASH to be installed on all FreeBSD machines. Please use the following commands:
 ```sh
 # pkg install -y bash
 # echo "fdesc /dev/fd  fdescfs  rw  0  0" >> /etc/fstab ; mount -a
