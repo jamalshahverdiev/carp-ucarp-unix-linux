@@ -1,0 +1,7 @@
+# Common VIP settings which can be overridden in individual vip-<nnnn>.conf
+PASSWORD="{{ carppass }}"
+BIND_INTERFACE="{{ gncard }}"
+SOURCE_ADDRESS="{{ ipaddress }}"
+
+# If you have extra options to add, see "ucarp --help" output
+OPTIONS="-k 1 --shutdown --preempt"

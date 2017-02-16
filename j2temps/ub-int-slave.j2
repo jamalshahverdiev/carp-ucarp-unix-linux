@@ -1,0 +1,26 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto {{ gncard }}
+iface {{ gncard }} inet static
+        address {{ ipaddress }}
+        netmask 255.255.255.0
+        network 172.16.100.0
+        gateway {{ gateip }}
+        dns-nameservers 8.8.8.8 8.8.4.4
+        dns-search opensource.az
+        ucarp-vid 1
+        ucarp-vip {{ virtualip }}
+        ucarp-password {{ carppass }}
+        ucarp-advskew 100
+        ucarp-master no
+
+auto {{ gncard }}:ucarp
+iface {{ gncard }}:ucarp inet static
+        address {{ virtualip }}
+        netmask 255.255.255.0
