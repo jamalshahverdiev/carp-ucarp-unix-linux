@@ -1,6 +1,6 @@
 ### CARP/UCARP install and configure to UNIX/Linux servers
 
-#####This article describes the python script which automatically installs and configures [CARP](https://en.wikipedia.org/wiki/Common_Address_Redundancy_Protocol) for UNIX (FreeBSD) and [UCARP](http://wiki.greentual.com/index.php/Ucarp) for Linux (Ubuntu, CentOS6 or CentOS7) servers. The script requires an __**IP**__ __**address**__, __**login**__, __**password**__, __**virtual IP**__ and __**CARP password**__ as input parameters. Determination of the type of operating system is performed automatically.
+#####This article describes the python script which automatically installs and configures [CARP](https://en.wikipedia.org/wiki/Common_Address_Redundancy_Protocol) for UNIX (FreeBSD) and [UCARP](http://wiki.greentual.com/index.php/Ucarp) for Linux (Ubuntu, CentOS6 or CentOS7) servers. The script requires an __*IP*__ __*address*__, __*login*__, __*password*__, __*virtual IP*__ and __*CARP password*__ as input parameters. Determination of the type of operating system is performed automatically.
 
 #####The test environment consists of Ubuntu, CentOS6, CentOS7, FreeBSD servers in which the CARP/UCARP will be configured. Each type of OS has 2 machines.
 
@@ -15,7 +15,7 @@ VIP: 172.16.100.100
 #####Only machines of one type of OS can be configured at a time.
 ![CARP topology](images/carptopology.jpg)
 
-#####__**Note**__: The python script uses fabric library which requires BASH to be installed on all FreeBSD machines. Please use the following commands:
+#####__*Note*__: The python script uses fabric library which requires BASH to be installed on all FreeBSD machines. Please use the following commands:
 ```sh
 # pkg install -y bash
 # echo "fdesc /dev/fd  fdescfs  rw  0  0" >> /etc/fstab ; mount -a
