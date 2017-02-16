@@ -4,12 +4,13 @@
 
 #####The test environment consists of Ubuntu, CentOS6, CentOS7, FreeBSD servers in which the CARP/UCARP will be configured. Each type of OS has 2 machines.
 
-#####Ubuntu          CentOS6         CentOS7         FreeBSD
-#####172.16.100.10   172.16.100.11   172.16.100.12   172.16.100.13
-#####172.16.100.20   172.16.100.21   172.16.100.22   172.16.100.23
+```sh
+Ubuntu          CentOS6         CentOS7         FreeBSD
+172.16.100.10   172.16.100.11   172.16.100.12   172.16.100.13
+172.16.100.20   172.16.100.21   172.16.100.22   172.16.100.23
 
-#####VIP: 172.16.100.100
-
+VIP: 172.16.100.100
+```
 
 #####Only machines of one type of OS can be configured at a time.
 ![CARP topology](images/carptopology.jpg)
