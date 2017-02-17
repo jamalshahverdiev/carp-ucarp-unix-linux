@@ -1,4 +1,6 @@
 #!/usr/bin/env python2.7
+# Author: Jamal Shahverdiev
+# Date: 17.02.2017
 
 import sys
 import os
