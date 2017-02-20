@@ -48,3 +48,10 @@ VIP: 172.16.100.100
 
 #####Try with CentOS6 and CentOS7 server:
 ![CentOS6_CentOS7](images/cos6-cos7.jpg)
+
+#####Use the following commands to download and execute code files:
+```sh
+# git clone https://github.com/jamalshahverdiev/carp-ucarp-unix-linux.git
+# cd ﻿carp-ucarp-unix-linux
+# ./carp-ucarp.py
+```
