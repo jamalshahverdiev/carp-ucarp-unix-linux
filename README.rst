@@ -36,7 +36,7 @@ Execute script to configure servers.
 * CentOS7:
 .. image:: images/centos7_success.jpg
 
-You can test the system by shutting down the master node while pinging the VIP. Only one ping should be lost.
+* You can test the system by shutting down the master node while pinging the VIP. Only one ping should be lost.
 .. image:: images/ping_result.jpg
 
 If you try to use different types of operation systems for master and slave nodes, you will get the following notification and script will not perform the installation.
