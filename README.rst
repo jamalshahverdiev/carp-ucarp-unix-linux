@@ -13,7 +13,7 @@ This article describes the python script which automatically installs and config
     VIP: 172.16.100.100
 
 
-Only machines of one type of OS can be configured at a time.
+* Only machines of one type of OS can be configured at a time:
 .. image:: images/carptopology.jpg
 
 * **Note**: The python script uses ``fabric`` library which requires **BASH** to be installed on all FreeBSD machines. Please use the following commands::
