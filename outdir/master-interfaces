@@ -1,0 +1,26 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto ens160
+iface ens160 inet static
+        address 10.50.94.203
+        netmask 255.255.255.0
+        network 172.16.100.0
+        gateway 10.50.94.1
+        dns-nameservers 8.8.8.8 8.8.4.4
+        dns-search opensource.az
+        ucarp-vid 1
+        ucarp-vip 10.50.94.222
+        ucarp-password freebsd
+        ucarp-advskew 1
+        ucarp-master yes
+
+auto ens160:ucarp
+iface ens160:ucarp inet static
+        address 10.50.94.222
+        netmask 255.255.255.0

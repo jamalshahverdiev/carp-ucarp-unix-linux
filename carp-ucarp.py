@@ -6,40 +6,9 @@ import sys
 sys.path.insert(0, './lib')
 from carpucarpvars import *
 import os
-#from termcolor import colored, cprint
 from fabric.api import *
 from fabric.tasks import execute
 import getpass
-#import jinja2
-
-#codepath = os.getcwd()
-#jinjadir = codepath+'/j2temps/'
-#outputdir = codepath+'/outdir/'
-#
-#templateLoader = jinja2.FileSystemLoader( searchpath=jinjadir )
-#templateEnv = jinja2.Environment( loader=templateLoader )
-#
-#CVIPCONFFILE = 'c6-c7-vip-001.conf.j2'
-#CVIPMASTERFILE = 'c6-c7-vip-common-master.j2'
-#CVIPSLAVEFILE = 'c6-c7-vip-common-slave.j2'
-#UMASTERFILE = 'ub-int-master.j2'
-#USLAVEFILE = 'ub-int-slave.j2'
-#
-#tempcvipconf = templateEnv.get_template( CVIPCONFFILE )
-#tempcvipmaster = templateEnv.get_template( CVIPMASTERFILE )
-#tempcvipslave = templateEnv.get_template( CVIPSLAVEFILE )
-#tempumaster = templateEnv.get_template( UMASTERFILE )
-#tempuslave = templateEnv.get_template( USLAVEFILE )
-#
-#ipadd = colored('IP address', 'green', attrs=['bold', 'underline'])
-#username = colored('username', 'green', attrs=['bold', 'underline'])
-#password = colored('password', 'magenta', attrs=['bold', 'underline'])
-#successfully = colored('successfully', 'green', attrs=['bold', 'underline'])
-#centos = colored('CentOS', 'yellow', attrs=['bold', 'underline'])
-#freebsd = colored('FreeBSD', 'yellow', attrs=['bold', 'underline'])
-#ubuntu = colored('Ubuntu', 'yellow', attrs=['bold', 'underline'])
-#enter = colored('Enter', 'cyan', attrs=['bold', 'underline'])
-#server = colored('server', 'cyan', attrs=['bold', 'underline'])
 
 
 def tempcreator(gncard, ipaddress, gateip, virtualip, carppass):
@@ -83,16 +52,16 @@ def variables():
     ipaddress = run('ifconfig | grep '+dgsubnet+' | awk \'{ print $2 }\' | cut -f2 -d\':\'')
 
 env.roledefs = {
-        'hosts': [str(raw_input('Please enter master '+ipadd+': ')), str(raw_input('Please enter slave '+ipadd+': '))]
+        'hosts': [str(raw_input(''+enter+' master '+ipadd+': ')), str(raw_input(''+enter+' slave '+ipadd+': '))]
         }
 
 carpnodes = { "master" : env.roledefs['hosts'][0], "slave" : env.roledefs['hosts'][1] }
 
 
-env.user = raw_input('Please '+enter+' '+username+' for UNIX/Linux '+server+': ')
-env.password = getpass.getpass('Please '+enter+' '+password+' for UNIX/Linux '+server+': ')
-virtualip = raw_input('Please '+enter+' virtual '+ipadd+' for CARP/UCARP: ')
-carppass = raw_input('Please '+enter+' '+password+' to crypt CARP/UCARP traffic: ')
+env.user = raw_input(''+enter+' '+username+' for UNIX/Linux '+server+': ')
+env.password = getpass.getpass(''+enter+' '+password+' for UNIX/Linux '+server+': ')
+virtualip = raw_input(''+enter+' virtual '+ipadd+' for '+carp+'/'+ucarp+': ')
+carppass = raw_input(''+enter+' '+password+' to crypt '+carp+'/'+ucarp+' traffic: ')
 
 
 with settings(hide('warnings', 'running', 'stdout', 'stderr'), warn_only=True):
