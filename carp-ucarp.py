@@ -3,41 +3,43 @@
 # Date: 17.02.2017
 
 import sys
+sys.path.insert(0, './lib')
+from carpucarpvars import *
 import os
-from termcolor import colored, cprint
+#from termcolor import colored, cprint
 from fabric.api import *
 from fabric.tasks import execute
 import getpass
-import jinja2
+#import jinja2
 
-codepath = os.getcwd()
-jinjadir = codepath+'/j2temps/'
-outputdir = codepath+'/outdir/'
-
-templateLoader = jinja2.FileSystemLoader( searchpath=jinjadir )
-templateEnv = jinja2.Environment( loader=templateLoader )
-
-CVIPCONFFILE = 'c6-c7-vip-001.conf.j2'
-CVIPMASTERFILE = 'c6-c7-vip-common-master.j2'
-CVIPSLAVEFILE = 'c6-c7-vip-common-slave.j2'
-UMASTERFILE = 'ub-int-master.j2'
-USLAVEFILE = 'ub-int-slave.j2'
-
-tempcvipconf = templateEnv.get_template( CVIPCONFFILE )
-tempcvipmaster = templateEnv.get_template( CVIPMASTERFILE )
-tempcvipslave = templateEnv.get_template( CVIPSLAVEFILE )
-tempumaster = templateEnv.get_template( UMASTERFILE )
-tempuslave = templateEnv.get_template( USLAVEFILE )
-
-ipadd = colored('IP address', 'green', attrs=['bold', 'underline'])
-username = colored('username', 'green', attrs=['bold', 'underline'])
-password = colored('password', 'magenta', attrs=['bold', 'underline'])
-successfully = colored('successfully', 'green', attrs=['bold', 'underline'])
-centosi = colored('CentOS', 'yellow', attrs=['bold', 'underline'])
-freebsd = colored('FreeBSD', 'yellow', attrs=['bold', 'underline'])
-ubuntu = colored('Ubuntu', 'yellow', attrs=['bold', 'underline'])
-enter = colored('Enter', 'cyan', attrs=['bold', 'underline'])
-server = colored('server', 'cyan', attrs=['bold', 'underline'])
+#codepath = os.getcwd()
+#jinjadir = codepath+'/j2temps/'
+#outputdir = codepath+'/outdir/'
+#
+#templateLoader = jinja2.FileSystemLoader( searchpath=jinjadir )
+#templateEnv = jinja2.Environment( loader=templateLoader )
+#
+#CVIPCONFFILE = 'c6-c7-vip-001.conf.j2'
+#CVIPMASTERFILE = 'c6-c7-vip-common-master.j2'
+#CVIPSLAVEFILE = 'c6-c7-vip-common-slave.j2'
+#UMASTERFILE = 'ub-int-master.j2'
+#USLAVEFILE = 'ub-int-slave.j2'
+#
+#tempcvipconf = templateEnv.get_template( CVIPCONFFILE )
+#tempcvipmaster = templateEnv.get_template( CVIPMASTERFILE )
+#tempcvipslave = templateEnv.get_template( CVIPSLAVEFILE )
+#tempumaster = templateEnv.get_template( UMASTERFILE )
+#tempuslave = templateEnv.get_template( USLAVEFILE )
+#
+#ipadd = colored('IP address', 'green', attrs=['bold', 'underline'])
+#username = colored('username', 'green', attrs=['bold', 'underline'])
+#password = colored('password', 'magenta', attrs=['bold', 'underline'])
+#successfully = colored('successfully', 'green', attrs=['bold', 'underline'])
+#centos = colored('CentOS', 'yellow', attrs=['bold', 'underline'])
+#freebsd = colored('FreeBSD', 'yellow', attrs=['bold', 'underline'])
+#ubuntu = colored('Ubuntu', 'yellow', attrs=['bold', 'underline'])
+#enter = colored('Enter', 'cyan', attrs=['bold', 'underline'])
+#server = colored('server', 'cyan', attrs=['bold', 'underline'])
 
 
 def tempcreator(gncard, ipaddress, gateip, virtualip, carppass):
@@ -159,7 +161,7 @@ def process_check(nodename):
     processid = run('ps waux| grep ucarp | grep -v grep | awk \'{ print $11 }\'')
 
     if processid == '/usr/sbin/ucarp':
-        print(''+nodename+': Ucarp '+successfully+' configured!')
+        print(''+nodename+': '+ucarp+' '+successfully+' configured!')
 
 
 def ubuntu_config(nodeid, filename, nodename):
@@ -194,29 +196,29 @@ def centos_config(nodeid, nodename):
 
 
 if masterostype == 'Linux' and masterosname == 'Ubuntu' and slaveostype == 'Linux' and slaveosname == 'Ubuntu':
-    print('Both servers are Linux Ubuntu ...')
-    print('Installation and configuration of Ucarp is in progress ...')
+    print('Both servers are Linux '+ubuntu+' ...')
+    print('Installation and configuration of '+ucarp+' is in progress ...')
     linux_ucarp_installer('apt-get')
     ubuntu_config(0, 'master-interfaces', 'master')
     ubuntu_config(1, 'slave-interfaces', 'slave')
 
 elif masterostype == 'Linux' and masterosname == 'CentOS' and slaveostype == 'Linux' and slaveosname == 'CentOS':
-    print('Both servers are Linux CentOS6 ...')
-    print('Installation and configuration of Ucarp is in progress ...')
+    print('Both servers are Linux '+centos+'6 ...')
+    print('Installation and configuration of '+ucarp+' is in progress ...')
     linux_ucarp_installer('yum')
     centos_config(0, 'master')
     centos_config(1, 'slave')
 
 elif masterostype == 'Linux' and masterosname == '\S' and slaveostype == 'Linux' and slaveosname == '\S':
-    print('Both servers are Linux CentOS7 ...')
-    print('Installation and configuration of Ucarp is in progress ...')
+    print('Both servers are Linux '+centos+'7 ...')
+    print('Installation and configuration of '+ucarp+' is in progress ...')
     linux_ucarp_installer('yum')
     centos_config(0, 'master')
     centos_config(1, 'slave')
 
 elif masterostype == 'FreeBSD' and slaveostype == 'FreeBSD':
-    print('Both servers are FreeBSD ... ')
-    print('Installation and configuration of Ucarp is in progress ...')
+    print('Both servers are '+freebsd+' ... ')
+    print('Installation and configuration of '+carp+' is in progress ...')
     bsd_ucarp_installer()
     bsd_ms_config(mgncard, carppass, virtualip, 0)
     bsd_ms_config(sgncard, carppass, virtualip, 1)
